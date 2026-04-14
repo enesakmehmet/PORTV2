@@ -85,14 +85,6 @@ const WorksSection = () => (
                   backgroundSize: "4px 4px",
                 }}
               />
-              <div className="absolute inset-0 bg-bg/70 backdrop-blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <div className="relative rounded-full px-6 py-3">
-                  <span className="absolute inset-[-2px] rounded-full accent-gradient animate-gradient-shift" />
-                  <span className="relative z-10 flex items-center gap-2 bg-bg rounded-full px-6 py-3 text-sm text-text-primary">
-                    İncele — <em className="font-display italic">{work.title}</em>
-                  </span>
-                </div>
-              </div>
             </div>
           </motion.div>
         ))}

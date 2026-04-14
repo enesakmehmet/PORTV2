@@ -175,17 +175,6 @@ const Navbar = () => {
               </button>
             ))}
           </div>
-
-          <Link
-            to="/messages"
-            onClick={() => setIsOpen(false)}
-            className="group relative mt-4 inline-flex text-xs sm:text-sm rounded-full px-3 sm:px-4 py-2 text-text-primary transition-colors"
-          >
-            <span className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity accent-gradient" />
-            <span className="relative z-10 flex items-center justify-center gap-1 bg-surface rounded-full px-3 py-2 backdrop-blur-md">
-              Merhaba <span className="text-xs">↗</span>
-            </span>
-          </Link>
         </nav>
       </div>
     </div>
