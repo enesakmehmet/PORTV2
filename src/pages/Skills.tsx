@@ -120,7 +120,7 @@ const skillGroups = [
   },
   {
     title: "Temel Teknolojiler",
-    count: 6,
+    count: 8,
     accent: "border-amber-500/40 bg-amber-500/10",
     icon: Layers3,
     iconColor: "text-amber-300",
@@ -131,9 +131,11 @@ const skillGroups = [
       { label: "React", icon: Atom, color: "text-cyan-400" },
       { label: "React Native", icon: Smartphone, color: "text-sky-300" },
       { label: "Zustand", icon: Layers3, color: "text-violet-400" },
+      { label: "Redux", icon: Workflow, color: "text-purple-400" },
+      { label: "Redux Toolkit", icon: Workflow, color: "text-fuchsia-400" },
       { label: "Hook Form", icon: FileText, color: "text-pink-400" },
     ],
-    gridClass: "lg:grid-cols-6 md:grid-cols-3 grid-cols-2",
+    gridClass: "lg:grid-cols-4 md:grid-cols-3 grid-cols-2",
   },
 ];
 

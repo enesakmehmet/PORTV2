@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   ArrowLeft,
   AtSign,
@@ -151,6 +151,9 @@ const SocialCard = ({ social, index, isLast }: { social: typeof socialLinks[0]; 
 const Messages = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <div className="min-h-screen bg-bg text-text-primary">
@@ -295,7 +298,32 @@ const Messages = () => {
                 <h2 className="text-lg font-semibold md:text-xl">Mesaj Gönder</h2>
               </div>
 
-              <form className="space-y-5">
+              <form ref={formRef} action="https://api.web3forms.com/submit" method="POST" className="space-y-5" onSubmit={async (e) => {
+                e.preventDefault();
+                setIsSubmitting(true);
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                try {
+                  const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                  });
+                  if (response.ok) {
+                    setSubmitStatus('success');
+                    setFormData({ name: '', email: '', subject: '', message: '' });
+                  } else {
+                    setSubmitStatus('error');
+                  }
+                } catch {
+                  setSubmitStatus('error');
+                }
+                setIsSubmitting(false);
+              }}>
+                {/* Web3Forms Access Key */}
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                <input type="hidden" name="subject" value={`Yeni İletişim Mesajı - ${formData.name || 'Ziyaretçi'}`} />
+                <input type="hidden" name="from_name" value="Portfolio İletişim Formu" />
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -307,6 +335,7 @@ const Messages = () => {
                     <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
                       type="text"
+                      name="name"
                       placeholder="Adınızı girin"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -332,6 +361,7 @@ const Messages = () => {
                     <AtSign className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
                       type="email"
+                      name="email"
                       placeholder="ornek@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -357,6 +387,7 @@ const Messages = () => {
                     <Paperclip className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
                       type="text"
+                      name="subject"
                       placeholder="Mesajınızın konusu"
                       value={formData.subject}
                       onChange={(e) => setFormData({...formData, subject: e.target.value})}
@@ -381,6 +412,7 @@ const Messages = () => {
                   <div className="relative">
                     <MessageSquareText className="pointer-events-none absolute left-4 top-4 h-4 w-4 text-slate-400" />
                     <textarea
+                      name="message"
                       placeholder="Mesajınızı buraya yazın..."
                       rows={6}
                       value={formData.message}
@@ -396,23 +428,43 @@ const Messages = () => {
                   </div>
                 </motion.div>
 
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-center text-sm text-emerald-300"
+                  >
+                    ✅ Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağım.
+                  </motion.div>
+                )}
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-center text-sm text-red-300"
+                  >
+                    ❌ Bir hata oluştu. Lütfen tekrar deneyin.
+                  </motion.div>
+                )}
+
                 <motion.button
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -2, scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
+                  whileHover={!isSubmitting ? { y: -2, scale: 1.01 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.99 } : {}}
                   type="submit"
-                  className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(79,70,229,0.35)] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(79,70,229,0.5)]"
+                  disabled={isSubmitting}
+                  className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(79,70,229,0.35)] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(79,70,229,0.5)] disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <motion.span
                     initial={{ x: 0 }}
                     whileHover={{ x: -2 }}
                     className="flex items-center gap-2"
                   >
-                    Mesaj Gönder
-                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    {isSubmitting ? 'Gönderiliyor...' : 'Mesaj Gönder'}
+                    <Send className={`h-4 w-4 transition-transform ${isSubmitting ? '' : 'group-hover:translate-x-1'}`} />
                   </motion.span>
                 </motion.button>
               </form>
