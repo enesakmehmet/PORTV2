@@ -33,7 +33,7 @@ const timelineItems = [
     id: 1,
     title: "Fullstack Developer",
     company: "OnlyJS Akademi",
-    meta: ["2024 - 08", "Uzaktan"],
+    meta: ["2025 - 2026", "Uzaktan"],
     summary: "Modern web uygulamaları geliştirme",
     description:
       "Modern web uygulamaları geliştirdim. React ve TypeScript ile büyük ölçekli projeler yönettim.",
@@ -49,7 +49,7 @@ const timelineItems = [
     id: 2,
     title: "Çağrı Merkezi Asistanı",
     company: "Sağlık Bakanlığı",
-    meta: ["2020 - 2024", "Türkiye"],
+    meta: ["2020 - 2026", "Türkiye"],
     summary: "Hasta randevu sistemi desteği",
     description: "Hasta randevu süreci ve operasyonel destek süreçlerinde görev aldım.",
     icon: PhoneCall,
