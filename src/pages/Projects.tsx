@@ -285,8 +285,8 @@ const projectCards = [
     tags: ["#mobile", "#react-native", "#full-stack", "#finance", "#ios", "#android", "#nodejs", "#postgresql", "#websocket"],
     variant: "altinpusula",
     cta: [
-      { label: "App Store", tone: "bg-[#356bff] text-white", href: "#" },
-      { label: "Google Play", tone: "bg-[#20b04a] text-white", href: "#" },
+      { label: "App Store", tone: "bg-[#356bff] text-white", href: "https://apps.apple.com/us/app/altın-pusula/id6759008199" },
+      { label: "Google Play", tone: "bg-[#20b04a] text-white", href: "https://play.google.com/store/apps/details?id=com.altinpusula.app" },
     ],
     hoverDescription:
       "Kişisel geliştirdiğim React Native ve Node.js tabanlı full-stack mobil finans ve portföy yönetim uygulamasıdır. İçerisinde canlı altın, döviz ve gümüş fiyat takibi; kullanıcıların alım-satım kayıtlarını tutabildiği kâr/zarar analizli portföy yönetimi ve kişiselleştirilebilir fiyat alarm sistemleri barındırır. Veri bütünlüğü PostgreSQL ve Prisma kullanılarak kurgulanmış, eş zamanlı fiyat güncellemeleri için WebSocket mimarisi entegre edilmiştir. Google AdMob reklam desteği, Expo push bildirim sistemi ve Node-cron tabanlı otomatik günlük piyasa özetleri ile ticari bir ürün niteliği taşır. React (Vite) tabanlı kapsamlı admin paneli aracılığıyla API kaynak yönetimi, anlık trafik takibi, sistem sağlık analizleri ve bildirim zamanlamaları merkezi olarak kontrol edilebilmektedir.",
@@ -298,11 +298,10 @@ const projectCards = [
     description:
       "Kişisel geliştirdiğim, React Native ve Node.js tabanlı full-stack mobil fal uygulamasıdır. İçerisinde kahve falı, el falı ve tarot okuma türleri; Groq, Gemini ve Deepseek entegrasyonuyla yapay zeka destekli yorum üretimi ve günlük ücretsiz kota sistemi barındırır.",
     tech: ["React Native", "Node.js", "TypeScript", "PostgreSQL", "Expo", "Prisma", "Express.js", "AI"],
-    tags: ["#mobile", "#react-native", "#full-stack", "#ai", "#ios", "#android", "#nodejs", "#postgresql", "#fal"],
+    tags: ["#mobile", "#react-native", "#full-stack", "#ai", "#android", "#nodejs", "#postgresql", "#fal"],
     variant: "falbaz",
     cta: [
-      { label: "App Store", tone: "bg-[#356bff] text-white", href: "#" },
-      { label: "Google Play", tone: "bg-[#20b04a] text-white", href: "#" },
+      { label: "Google Play", tone: "bg-[#20b04a] text-white", href: "https://play.google.com/store/apps/details?id=com.falbaz.app&hl=tr" },
     ],
     hoverDescription:
       "Kişisel geliştirdiğim, React Native ve Node.js tabanlı full-stack mobil fal uygulamasıdır. İçerisinde kahve falı, el falı ve tarot okuma türleri; Groq, Gemini ve Deepseek entegrasyonuyla yapay zeka destekli yorum üretimi ve günlük ücretsiz kota sistemi barındırır. PostgreSQL ve Prisma kullanılarak sağlam bir veri mimarisi üzerine inşa edilmiştir. Google ile giriş, AdMob reklam entegrasyonu, Expo push bildirim sistemi ve Telegram bot destekli admin bildirimleri ile ticari bir ürün niteliği taşır. React (Vite) tabanlı admin paneli aracılığıyla kullanıcı yönetimi, fal havuzu düzenleme ve yapay zeka ayarları merkezi olarak kontrol edilebilmektedir.",
